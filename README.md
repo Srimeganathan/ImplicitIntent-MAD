@@ -10,7 +10,12 @@ To create a navigate button using Implicit Intent to display the gmail page usin
 Latest Version Android Studio
 
 ## ALGORITHM:
-## Step 1: Open Android Stdio and then click on File -> New -> New project. Step 2: Then select the Minimum SDK as shown below and click Next. Step 3: Then select the Empty Activity and click Next. Finally click Finish. Step 4: Design layout in activity_main.xml. Step 5: Display message give in MainActivity file. Step 6: Save and run the application.
+# Step 1: Open Android Stdio and then click on File -> New -> New project. 
+# Step 2: Then select the Minimum SDK as shown below and click Next. 
+# Step 3: Then select the Empty Activity and click Next. Finally click Finish. 
+# Step 4: Design layout in activity_main.xml. 
+# Step 5: Display message give in MainActivity file. 
+# Step 6: Save and run the application.
 
 
 ## PROGRAM:
