@@ -10,136 +10,147 @@ To create a navigate button using Implicit Intent to display the gmail page usin
 Latest Version Android Studio
 
 ## ALGORITHM:
-
+## Step 1: Open Android Stdio and then click on File -> New -> New project. Step 2: Then select the Minimum SDK as shown below and click Next. Step 3: Then select the Empty Activity and click Next. Finally click Finish. Step 4: Design layout in activity_main.xml. Step 5: Display message give in MainActivity file. Step 6: Save and run the application.
 
 
 ## PROGRAM:
+
+MainActivity.java
 ```
-/*
-Program to print the text “Implicitintent”.
-Developed by:Srimeganathan S
-Registeration Number :212224230273
-*/
-```
-## Mainactivity
-```
-package com.example.implicitintent;
+package com.example.implict_intent;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-
-    EditText urlInput;
-    Button navigateBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        urlInput = findViewById(R.id.urlInput);
-        navigateBtn = findViewById(R.id.navigateBtn);
+        EditText etUrl = findViewById(R.id.etUrl);
+        Button btnOpen = findViewById(R.id.btnOpenFile); // ✅ MATCHED ID
 
-        navigateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = urlInput.getText().toString().trim();
+        btnOpen.setOnClickListener(v -> {
 
-                if (url.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Please enter a URL", Toast.LENGTH_SHORT).show();
-                } else {
+            String url = etUrl.getText().toString().trim();
 
-                    if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                        url = "http://" + url;
-                    }
-
-
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-
-
-                    try {
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, "No app found to handle this request", Toast.LENGTH_SHORT).show();
-                    }
-                }
+            if (url.isEmpty()) {
+                Toast.makeText(this, "Enter a URL", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "https://" + url;
+            }
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
         });
     }
 }
 
 ```
-## Active main.xml
+activity_main.xml
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#BED88CF4"
-    android:backgroundTintMode="src_in"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/urlInput"
-        android:layout_width="345dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="252dp"
-        android:hint="Enter website"
-        android:inputType="textUri"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/navigateBtn"
-        android:layout_width="wrap_content"
+        android:id="@+id/etUrl"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Go To The Page"
+        android:layout_margin="16dp"
+        android:hint="Enter the URL"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/urlInput"
-        app:layout_constraintVertical_bias="0.361" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <Button
+        android:id="@+id/btnOpenFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
+        android:layout_marginTop="16dp"
+        android:text="Open Link"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etUrl"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Implicit Intent"
-        android:textAlignment="textStart"
-        android:textAllCaps="true"
-        android:textColor="#B300FFED"
-        android:textSize="34sp"
-        android:textStyle="bold|italic"
-        android:typeface="serif"
-        app:layout_constraintBottom_toTopOf="@+id/urlInput"
+        android:textColor="#0F0D0D"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.182" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="127dp"
+        android:layout_height="35dp"
+        android:text="Enter the URL"
+        android:textColor="#A2324E"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.342" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
+AndroidManifest.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Implict_Intent">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
+```
+
 ## OUTPUT
+![WhatsApp Image 2026-02-07 at 1 18 41 PM](https://github.com/user-attachments/assets/79c25a11-7976-47e4-952a-caae45c4f202)
 
-![WhatsApp Image 2026-02-10 at 1 37 02 PM](https://github.com/user-attachments/assets/3f17746f-a978-4820-8d59-7edc24005544)
-
+![WhatsApp Image 2026-02-07 at 1 21 02 PM](https://github.com/user-attachments/assets/7d072c74-8186-4c4b-9b51-119cc6accf33)
 
 
 ## RESULT
